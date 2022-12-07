@@ -3,12 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:TerentievCourseWork">
     <Application.Resources>
-         <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
-                 <ResourceDictionary>
-                     <local:Bootstrapper x:Key="Bootstrapper"/>
-                 </ResourceDictionary>
-             </ResourceDictionary.MergedDictionaries>
-         </ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:Bootstrapper x:Key="Bootstrapper" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Name="Colors">
+                    <!-- colors -->
+                    <Color x:Key="DefaultWhite">#FFFFFF</Color>
+                    <Color x:Key="DefaultBlack">#010101</Color>
+                    <Color x:Key="BackgroundBlue">#262E58</Color>
+                    <Color x:Key="ButtonBackground">#262E58</Color>
+
+                    <!-- solid color brushes -->
+                    <SolidColorBrush x:Key="DefaultWhiteBrush" Color="{StaticResource DefaultWhite}" />
+                    <SolidColorBrush x:Key="DefaultBlackBrush" Color="{StaticResource DefaultBlack}" />
+                    <SolidColorBrush x:Key="BackgroundBlueBrush" Color="{StaticResource BackgroundBlue}" />
+                    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackground}" />
+
+                    <!-- gradient color brushes -->
+                    <LinearGradientBrush x:Key="BackgroundHorizontalGradientBrush" StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource DefaultBlack}" Offset="0" />
+                        <GradientStop Color="{StaticResource BackgroundBlue}" Offset="0.5" />
+                        <GradientStop Color="{StaticResource DefaultBlack}" Offset="1" />
+                    </LinearGradientBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Name="TextStyles">
+                    <Style x:Key="CopytextLightMedium"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Noto Sans" />
+                        <Setter Property="LineHeight" Value="40" />
+                        <Setter Property="FontSize" Value="30" />
+                        <Setter Property="Foreground" Value="{StaticResource DefaultWhiteBrush}" />
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

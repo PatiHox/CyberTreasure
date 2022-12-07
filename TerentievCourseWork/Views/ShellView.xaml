@@ -6,7 +6,11 @@
       xmlns:local="clr-namespace:TerentievCourseWork.Views"
       xmlns:viewModels="clr-namespace:TerentievCourseWork.ViewModels"
       mc:Ignorable="d"
+      d:DesignHeight="980" d:DesignWidth="1920"
       d:DataContext="{d:DesignInstance Type=viewModels:ShellViewModel, IsDesignTimeCreatable=True}"
-      Title="ShellView" Height="450" Width="800">
-    <ContentControl x:Name="ActiveItem"></ContentControl>
+      WindowStartupLocation="CenterScreen"
+      WindowState="Maximized"
+      MinWidth="800" MinHeight="600"
+      Title="{Binding AppTitle, Mode=OneWay}">
+    <ContentControl x:Name="ActiveItem" />
 </Window>

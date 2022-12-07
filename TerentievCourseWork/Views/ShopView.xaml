@@ -1,12 +1,41 @@
-<Page x:Class="TerentievCourseWork.ViewModels.ShopView"
+<Grid x:Class="TerentievCourseWork.ViewModels.ShopView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:TerentievCourseWork.ViewModels"
+      xmlns:models="clr-namespace:TerentievCourseWork.Models"
       mc:Ignorable="d"
-      Title="ShopViewModel" Height="450" Width="800">
-    <Grid>
-        
+      d:DesignHeight="980" d:DesignWidth="1920"
+      d:DataContext="{d:DesignInstance Type=local:ShopViewModel, IsDesignTimeCreatable=True}">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="380" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <ItemsControl x:Name="GenresList"
+                  Grid.Column="0"
+                  Height="Auto"
+                  VerticalContentAlignment="Center"
+                  HorizontalContentAlignment="Left"
+                  Background="{StaticResource DefaultBlackBrush}"
+                  ItemsSource="{Binding Genres}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type models:GenreModel}">
+                <Border Width="380"
+                        Height="100"
+                        Background="{StaticResource ButtonBackgroundBrush}"
+                        Margin="0 9"
+                        CornerRadius="0 15 15 0">
+                    <TextBlock Text="{Binding Name}"
+                               Margin="11 9"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource CopytextLightMedium}" />
+                </Border>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    <Grid Grid.Column="1"
+          Background="{StaticResource BackgroundHorizontalGradientBrush}">
+
     </Grid>
-</Page>
+</Grid>

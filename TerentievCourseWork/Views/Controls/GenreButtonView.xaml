@@ -1,0 +1,47 @@
+<Button x:Class="TerentievCourseWork.Views.Controls.GenreButtonView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:TerentievCourseWork.ViewModels"
+        mc:Ignorable="d"
+        d:DesignHeight="300" d:DesignWidth="300"
+        d:DataContext="{d:DesignInstance viewModels:GenreButtonViewModel, IsDesignTimeCreatable=True}"
+        Command="{Binding ButtonClickCommand}"
+        CommandParameter="{Binding}">
+    <Button.Template>
+        <ControlTemplate>
+            <Border Width="380"
+                    MinHeight="50"
+                    Background="{TemplateBinding Property=Background}"
+                    Margin="0 9"
+                    CornerRadius="0 15 15 0">
+                <TextBlock Text="{Binding GenreModel.Name}"
+                           Margin="11 20"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Style="{StaticResource CopytextLightMedium}" />
+            </Border>
+        </ControlTemplate>
+    </Button.Template>
+    <Button.Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}" />
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Value="False" />
+                        <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsMouseOver}"
+                                   Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="{StaticResource ButtonBackgroundHighlightedBrush}" />
+                </MultiDataTrigger>
+                <DataTrigger Binding="{Binding IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             Value="True">
+                    <Setter Property="Background" Value="{StaticResource ButtonBackgroundSelectedBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Button.Style>
+</Button>

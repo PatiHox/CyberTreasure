@@ -12,5 +12,7 @@
       WindowState="Maximized"
       MinWidth="800" MinHeight="600"
       Title="{Binding AppTitle, Mode=OneWay}">
-    <ContentControl x:Name="ActiveItem" />
+    <ContentControl Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}, Path=Height, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}, Path=Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    x:Name="ActiveItem" />
 </Window>

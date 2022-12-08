@@ -14,13 +14,17 @@
                     <Color x:Key="DefaultBlack">#010101</Color>
                     <Color x:Key="BackgroundBlue">#262E58</Color>
                     <Color x:Key="ButtonBackground">#262E58</Color>
-
+                    <Color x:Key="ButtonBackgroundHighlighted">#2D3A6B</Color>
+                    <Color x:Key="ButtonBackgroundSelected">#265849</Color>
+                    
                     <!-- solid color brushes -->
                     <SolidColorBrush x:Key="DefaultWhiteBrush" Color="{StaticResource DefaultWhite}" />
                     <SolidColorBrush x:Key="DefaultBlackBrush" Color="{StaticResource DefaultBlack}" />
                     <SolidColorBrush x:Key="BackgroundBlueBrush" Color="{StaticResource BackgroundBlue}" />
                     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackground}" />
-
+                    <SolidColorBrush x:Key="ButtonBackgroundHighlightedBrush" Color="{StaticResource ButtonBackgroundHighlighted}" />
+                    <SolidColorBrush x:Key="ButtonBackgroundSelectedBrush" Color="{StaticResource ButtonBackgroundSelected}" />
+                    
                     <!-- gradient color brushes -->
                     <LinearGradientBrush x:Key="BackgroundHorizontalGradientBrush" StartPoint="0,0" EndPoint="1,0">
                         <GradientStop Color="{StaticResource DefaultBlack}" Offset="0" />

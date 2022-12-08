@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Caliburn.Micro;
 using TerentievCourseWork.Models;
 
 namespace TerentievCourseWork.ViewModels;
 
-public class GenreButtonViewModel : INotifyPropertyChanged
+public class GenreButtonViewModel : PropertyChangedBase
 {
     private bool _isSelected;
     private GenreModel _genreModel;
@@ -14,13 +12,13 @@ public class GenreButtonViewModel : INotifyPropertyChanged
     public GenreModel GenreModel
     {
         get => _genreModel;
-        set => SetField(ref _genreModel, value);
+        set => Set(ref _genreModel, value);
     }
     public int IndexInList { get; }
     public bool IsSelected
     {
         get => _isSelected;
-        set => SetField(ref _isSelected, value);
+        set => Set(ref _isSelected, value);
     }
     public ICommand ButtonClickCommand { get; }
     public object Parent { get; }
@@ -33,23 +31,4 @@ public class GenreButtonViewModel : INotifyPropertyChanged
         IndexInList = index;
         Parent = parent;
     }
-
-    #region INotifyPropertyChanged Implementation
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
-    }
-
-    #endregion
 }

@@ -1,19 +1,24 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Caliburn.Micro;
 using Microsoft.Xaml.Behaviors.Core;
 using TerentievCourseWork.Models;
+using TerentievCourseWork.Services;
 
 namespace TerentievCourseWork.ViewModels;
 
 public class ShopViewModel : Screen
 {
+    #region Private fields
+
+    private readonly IProductDataProvider _productDataProvider;
+
+    #endregion
+    
     #region Public properties
 
     public ObservableCollection<GenreButtonViewModel> GenreButtons { get; set; } = new();
@@ -29,15 +34,17 @@ public class ShopViewModel : Screen
 
     protected override Task OnActivateAsync(CancellationToken cancellationToken)
     {
-        // TODO: Implement loading genres from service
-        var genres = new List<GenreModel>
-        {
-            new() { Name = "Action" },
-            new() { Name = "Adventure" },
-            new() { Name = "RPG" },
-        };
-        InitializeGenreItems(genres);
+        InitializeGenreItems(_productDataProvider.GetGenres().ToList());
         return Task.FromResult(true);
+    }
+
+    #endregion
+
+    #region Constructor
+
+    public ShopViewModel(IProductDataProvider productDataProvider)
+    {
+        _productDataProvider = productDataProvider;
     }
 
     #endregion

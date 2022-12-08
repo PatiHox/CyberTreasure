@@ -13,7 +13,7 @@ public class Bootstrapper : BootstrapperBase
 {
     #region Private fields
     
-    private SimpleContainer _container;
+    private SimpleContainer _container = new();
 
     #endregion
 
@@ -30,15 +30,15 @@ public class Bootstrapper : BootstrapperBase
 
     protected override void Configure()
     {
-        _container = new SimpleContainer();
-        
         _container.Singleton<IWindowManager, WindowManager>();
         _container.Singleton<IEventAggregator, EventAggregator>();
 
         _container.PerRequest<ShellViewModel>();
         _container.PerRequest<ShopViewModel>();
         
-        _container.Instance<IProductDataProvider>(new ProductDataProvider());
+        _container.Instance<IApiParserService>(new ApiParserService());
+        _container.Instance<IWebRequestService>(new WebRequestService(_container.GetInstance<IApiParserService>()));
+        _container.Instance<IProductDataProvider>(new ProductDataProvider(_container.GetInstance<IWebRequestService>()));
     }
 
     protected override async void OnStartup(object sender, StartupEventArgs e)

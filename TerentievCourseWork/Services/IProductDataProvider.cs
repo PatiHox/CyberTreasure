@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using TerentievCourseWork.Models;
 
 namespace TerentievCourseWork.Services;
 
 public interface IProductDataProvider
 {
-    IEnumerable<GenreModel> GetGenres();
+    ObservableCollection<GenreModel> Genres { get; }
 }

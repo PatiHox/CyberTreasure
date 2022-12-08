@@ -14,4 +14,9 @@
       <PackageReference Include="NLog" Version="5.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="genres.json" />
+      <Resource Include="genres.json" />
+    </ItemGroup>
+
 </Project>

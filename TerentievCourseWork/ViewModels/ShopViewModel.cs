@@ -34,7 +34,7 @@ public class ShopViewModel : Screen
 
     protected override Task OnActivateAsync(CancellationToken cancellationToken)
     {
-        InitializeGenreItems(_productDataProvider.GetGenres().ToList());
+        InitializeGenreItems(_productDataProvider.Genres.ToList());
         return Task.FromResult(true);
     }
 

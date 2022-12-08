@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "Action",
+    "description": "Action games are fast-paced and usually involve a lot of shooting.",
+    "games": [
+      {
+        "id": 1,
+        "title": "Call of Duty",
+        "description": "Call of Duty is a first-person shooter video game franchise published by Activision.",
+        "price": 59.99
+      },
+      {
+        "id": 2,
+        "title": "Gears of War",
+        "description": "Gears of War is a third-person shooter video game franchise created by Epic Games and owned by Microsoft Studios.",
+        "price": 49.99
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "RPG",
+    "description": "Role-playing games are games in which players assume the roles of characters in a fictional setting.",
+    "games": [
+      {
+        "id": 3,
+        "title": "The Elder Scrolls V: Skyrim",
+        "description": "The Elder Scrolls V: Skyrim is an action role-playing video game developed by Bethesda Game Studios and published by Bethesda Softworks.",
+        "price": 39.99
+      },
+      {
+        "id": 4,
+        "title": "Final Fantasy VII",
+        "description": "Final Fantasy VII is a role-playing video game developed by Square for the PlayStation console.",
+        "price": 29.99
+      }
+    ]
+  }
+]

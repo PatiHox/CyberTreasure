@@ -4,11 +4,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModels="clr-namespace:TerentievCourseWork.ViewModels"
+        xmlns:controls="clr-namespace:TerentievCourseWork.Views.Controls"
         mc:Ignorable="d"
         d:DesignHeight="300" d:DesignWidth="300"
         d:DataContext="{d:DesignInstance viewModels:GenreButtonViewModel, IsDesignTimeCreatable=True}"
+        Margin="0"
+        Width="380" Height="Auto"
         Command="{Binding ButtonClickCommand}"
-        CommandParameter="{Binding}">
+        CommandParameter="{Binding}"
+        x:Name="GenreButton">
     <Button.Template>
         <ControlTemplate>
             <Border Width="380"
@@ -30,14 +34,14 @@
             <Style.Triggers>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        <Condition Binding="{Binding ElementName=GenreButton, Path=IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                    Value="False" />
                         <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsMouseOver}"
                                    Value="True" />
                     </MultiDataTrigger.Conditions>
                     <Setter Property="Background" Value="{StaticResource ButtonBackgroundHighlightedBrush}" />
                 </MultiDataTrigger>
-                <DataTrigger Binding="{Binding IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                <DataTrigger Binding="{Binding ElementName=GenreButton, Path=IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                              Value="True">
                     <Setter Property="Background" Value="{StaticResource ButtonBackgroundSelectedBrush}" />
                 </DataTrigger>

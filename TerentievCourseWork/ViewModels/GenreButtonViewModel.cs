@@ -14,21 +14,14 @@ public class GenreButtonViewModel : PropertyChangedBase
         get => _genreModel;
         set => Set(ref _genreModel, value);
     }
-    public int IndexInList { get; }
-    public bool IsSelected
-    {
-        get => _isSelected;
-        set => Set(ref _isSelected, value);
-    }
     public ICommand ButtonClickCommand { get; }
     public object Parent { get; }
+    public bool IsSelected { get; set; }
 
-    public GenreButtonViewModel(GenreModel genreModel, bool isSelected, ICommand buttonClickCommand, int index, object parent)
+    public GenreButtonViewModel(GenreModel genreModel, ICommand buttonClickCommand, object parent)
     {
         GenreModel = genreModel;
-        IsSelected = isSelected;
         ButtonClickCommand = buttonClickCommand;
-        IndexInList = index;
         Parent = parent;
     }
 }

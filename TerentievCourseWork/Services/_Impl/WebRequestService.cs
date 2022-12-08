@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Resources;
 using TerentievCourseWork.Models;
 
 namespace TerentievCourseWork.Services._Impl;
@@ -20,12 +17,15 @@ public class WebRequestService : IWebRequestService
 
     public async Task<List<GenreModel>> GetGenres()
     {
-        var uri = new Uri("pack://application:,,,/genres.json", UriKind.RelativeOrAbsolute);
-        StreamResourceInfo streamResourceInfo = Application.GetResourceStream(uri) ?? throw new InvalidOperationException();
-        StreamReader streamReader = new StreamReader(streamResourceInfo.Stream);
-        var genres = await streamReader.ReadToEndAsync();
-        
-        
+        string genres;
+        // var uri = new Uri("pack://application:,,,/genres.json", UriKind.RelativeOrAbsolute);
+        // StreamResourceInfo streamResourceInfo = Application.GetResourceStream(uri) ?? throw new InvalidOperationException();
+        await using (Stream fs = File.OpenRead(@"C:\Users\PatiBook\RiderProjects\TerentievCourseWork\TerentievCourseWork\genres.json"))
+        {
+            var streamReader = new StreamReader(fs);
+            genres = await streamReader.ReadToEndAsync();
+        }
+
         var parsedList = _apiParserService.ParseGenresResponse(genres);
         
         return parsedList;

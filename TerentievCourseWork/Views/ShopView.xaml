@@ -13,22 +13,50 @@
         <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
     <Grid Grid.Column="0"
+          Margin="0"
           Background="{StaticResource DefaultBlackBrush}">
-        <ItemsControl x:Name="GenresList"
-                      Grid.Column="0"
-                      VerticalAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      HorizontalContentAlignment="Left"
-                      ItemsSource="{Binding GenreButtons}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type local:GenreButtonViewModel}">
-                    <controls:GenreButtonView />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ListBox x:Name="GenresList"
+                 Grid.Column="0"
+                 VerticalAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Left"
+                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 SelectionMode="Single"
+                 BorderThickness="0"
+                 Padding="0"
+                 Margin="0"
+                 ItemsSource="{Binding GenreButtons}">
+            <ListBox.Template>
+                <ControlTemplate TargetType="ListBox">
+                    <StackPanel IsItemsHost="True" />
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <controls:GenreButtonView IsSelected="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}, Path=IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical" 
+                                            IsItemsHost="True"
+                                            Margin="0"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
     </Grid>
     <Grid Grid.Column="1"
           Background="{StaticResource BackgroundHorizontalGradientBrush}">
-
     </Grid>
 </Grid>

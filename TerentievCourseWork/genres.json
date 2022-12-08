@@ -36,5 +36,100 @@
         "price": 29.99
       }
     ]
-  }
+  },
+  {
+    "id": 3,
+    "name": "Strategy",
+    "description": "Strategy games are games in which the players' in-game decisions have a high impact on the outcome of the game.",
+    "games": [
+      {
+        "id": 5,
+        "title": "Age of Empires",
+        "description": "Age of Empires is a series of historical real-time strategy video games, originally developed by Ensemble Studios and published by Microsoft.",
+        "price": 19.99
+      },
+      {
+        "id": 6,
+        "title": "StarCraft",
+        "description": "StarCraft is a military science fiction media franchise created by Chris Metzen and James Phinney and owned by Blizzard Entertainment.",
+        "price": 9.99
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Sports",
+    "description": "Sports games are video games that simulate the practice of sports.",
+    "games": [
+      {
+        "id": 7,
+        "title": "FIFA 21",
+        "description": "FIFA 21 is a football simulation video game published by Electronic Arts as part of the FIFA series.",
+        "price": 59.99
+      },
+      {
+        "id": 8,
+        "title": "NBA 2K21",
+        "description": "NBA 2K21 is a basketball simulation video game developed by Visual Concepts and published by 2K Sports, based on the National Basketball Association.",
+        "price": 49.99
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Adventure",
+    "description": "Adventure games are games in which players assume the role of a protagonist in an interactive story driven by exploration and puzzle-solving.",
+    "games": [
+      {
+        "id": 9,
+        "title": "The Legend of Zelda: Breath of the Wild",
+        "description": "The Legend of Zelda: Breath of the Wild is an action-adventure game developed and published by Nintendo.",
+        "price": 59.99
+      },
+      {
+        "id": 10,
+        "title": "Uncharted 4: A Thief's End",
+        "description": "Uncharted 4: A Thief's End is an action-adventure game developed by Naughty Dog and published by Sony Interactive Entertainment.",
+        "price": 49.99
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Racing",
+    "description": "Racing games are video games in which the player partakes in a racing competition with any type of land, air, or sea vehicles.",
+    "games": [
+      {
+        "id": 11,
+        "title": "Forza Horizon 4",
+        "description": "Forza Horizon 4 is a 2018 racing video game developed by Playground Games and published by Microsoft Studios for Xbox One and Microsoft Windows.",
+        "price": 59.99
+      },
+      {
+        "id": 12,
+        "title": "Gran Turismo Sport",
+        "description": "Gran Turismo Sport is a 2017 racing video game developed by Polyphony Digital and published by Sony Interactive Entertainment for PlayStation 4.",
+        "price": 49.99
+      }
+    ]
+  },
+    {
+        "id": 7,
+        "name": "Puzzle",
+        "description": "Puzzle games are games that require puzzle solving.",
+        "games": [
+        {
+            "id": 13,
+            "title": "Portal 2",
+            "description": "Portal 2 is a 2011 first-person puzzle-platform video game developed and published by Valve.",
+            "price": 19.99
+        },
+        {
+            "id": 14,
+            "title": "Tetris",
+            "description": "Tetris is a tile-matching puzzle video game originally designed and programmed by Soviet Russian software engineer Alexey Pajitnov.",
+            "price": 9.99
+        }
+        ]
+    }
 ]

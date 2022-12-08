@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Caliburn.Micro;
 using Microsoft.Xaml.Behaviors.Core;
 using TerentievCourseWork.Models;
 using TerentievCourseWork.Services;
+using TerentievCourseWork.Services._Impl;
 
 namespace TerentievCourseWork.ViewModels;
 
@@ -16,17 +20,25 @@ public class ShopViewModel : Screen
     #region Private fields
 
     private readonly IProductDataProvider _productDataProvider;
+    private int _selectedIndex;
 
     #endregion
     
     #region Public properties
 
-    public ObservableCollection<GenreButtonViewModel> GenreButtons { get; set; } = new();
-    public List<GameModel> SelectedGenreGames => GenreButtons
-        .Select<GenreButtonViewModel, Tuple<bool, IEnumerable<GameModel>>>(item => new(item.IsSelected, item.GenreModel.Games))
-        .FirstOrDefault(tuple => tuple.Item1, new Tuple<bool, IEnumerable<GameModel>>(true, new List<GameModel>()))
-        .Item2
-        .ToList();
+    public List<GenreButtonViewModel> GenreButtons { get; init; } = new();
+
+    public int SelectedIndex
+    {
+        get => _selectedIndex;
+        set
+        { 
+            _selectedIndex = value;
+            NotifyOfPropertyChange(nameof(SelectedGenreGames));
+        }
+    }
+
+    public List<GameModel> SelectedGenreGames => GenreButtons[SelectedIndex].GenreModel.Games;
 
     #endregion
 
@@ -34,8 +46,17 @@ public class ShopViewModel : Screen
 
     protected override Task OnActivateAsync(CancellationToken cancellationToken)
     {
+        _productDataProvider.Genres.CollectionChanged += GenreButtonsOnCollectionChanged;
+
         InitializeGenreItems(_productDataProvider.Genres.ToList());
         return Task.FromResult(true);
+    }
+
+    private void GenreButtonsOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        UpdateGenreButtons(_productDataProvider.Genres.ToList());
+        
+        NotifyOfPropertyChange(nameof(GenreButtons));
     }
 
     #endregion
@@ -53,9 +74,23 @@ public class ShopViewModel : Screen
     
     private static void GenreButtonAction(object obj)
     {
-        if (obj is GenreButtonViewModel { Parent: ShopViewModel shop, IsSelected: false } genreButton)
+        if (obj is GenreButtonViewModel { Parent: ShopViewModel shop } genreButton)
         {
-            SelectGenre(genreButton.IndexInList, shop);
+            var index = -1;
+            
+            for (int i = 0; i < shop.GenreButtons.Count; i++)
+            {
+                if (shop.GenreButtons[i].GenreModel.Id == genreButton.GenreModel.Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            
+            if (index != shop.SelectedIndex)
+            {
+                shop.SetSelectedIndex(index);
+            }
         }
     }
 
@@ -63,21 +98,41 @@ public class ShopViewModel : Screen
     
     #region Private methods
 
-    private void InitializeGenreItems(List<GenreModel> genreModels)
+    private void UpdateGenreButtons(List<GenreModel> genreModels)
     {
-        foreach (var viewModel in genreModels.Select((item, index) =>
-                     new GenreButtonViewModel(item, index == 0, new ActionCommand(GenreButtonAction), index, this)))
+        long selectedId = -1;
+        if(SelectedIndex >= 0)
+            selectedId = GenreButtons[SelectedIndex].GenreModel.Id;
+        
+        GenreButtons.Clear();
+        
+        foreach (var viewModel in genreModels.Select(item => new GenreButtonViewModel(item, new ActionCommand(GenreButtonAction), this)))
         {
             GenreButtons.Add(viewModel);
         }
+
+        var newIndexOfPreviouslySelected = GenreButtons.IndexOf(GenreButtons.FirstOrDefault(x => x.GenreModel.Id == selectedId, null));
+        SetSelectedIndex(newIndexOfPreviouslySelected == -1 ? 0 : newIndexOfPreviouslySelected);
+        
+        NotifyOfPropertyChange(nameof(GenreButtons));
+    }
+    
+    private void InitializeGenreItems(List<GenreModel> genreModels)
+    {
+        foreach (var viewModel in genreModels.Select(item => new GenreButtonViewModel(item, new ActionCommand(GenreButtonAction), this)))
+        {
+            GenreButtons.Add(viewModel);
+        }
+        
+        SetSelectedIndex(0);
+        
+        NotifyOfPropertyChange(nameof(GenreButtons));
     }
 
-    private static void SelectGenre(int indexInList, ShopViewModel shopViewModel)
+    private void SetSelectedIndex(int index)
     {
-        foreach (var genreButton in shopViewModel.GenreButtons)
-        {
-            genreButton.IsSelected = genreButton.IndexInList == indexInList;
-        }
+        SelectedIndex = index;
+        NotifyOfPropertyChange(nameof(SelectedIndex));
     }
     
     #endregion

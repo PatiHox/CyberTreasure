@@ -1,0 +1,46 @@
+<Grid x:Class="TerentievCourseWork.Views.Controls.GameBannerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:viewModels="clr-namespace:TerentievCourseWork.ViewModels"
+      mc:Ignorable="d"
+      d:DesignHeight="230" d:DesignWidth="1144"
+      d:DataContext="{d:DesignInstance Type=viewModels:GameBannerViewModel, IsDesignTimeCreatable=True}"
+      Background="Transparent">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="0.36*" />
+        <ColumnDefinition Width="0.504*" />
+        <ColumnDefinition Width="0.136*" />
+    </Grid.ColumnDefinitions>
+    <Grid Grid.Column="0"
+          Grid.ColumnSpan="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.34*" />
+            <ColumnDefinition Width="0.66*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="1"
+                Background="{StaticResource GameBannerBackgroundHorizontalGradientBrush}"
+                CornerRadius="0 15 15 0" />
+    </Grid>
+    
+    <Image Grid.Column="0"
+           Stretch="Uniform"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Left"
+           Margin="0 18"
+           Source="{Binding BannerImage}" />
+    <StackPanel Grid.Column="1"
+                Margin="26 0 0 30"
+                Orientation="Vertical">
+        <TextBlock Style="{StaticResource Header1}"
+                   Text="{Binding Title}"
+                   TextWrapping="NoWrap"
+                   HorizontalAlignment="Stretch" />
+        <TextBlock Style="{StaticResource Copytext}"
+                   Text="{Binding Description}"
+                   MaxHeight="120"
+                   TextTrimming="WordEllipsis"
+                   TextWrapping="Wrap"/>
+    </StackPanel>
+</Grid>

@@ -10,35 +10,55 @@
                 </ResourceDictionary>
                 <ResourceDictionary x:Name="Colors">
                     <!-- colors -->
-                    <Color x:Key="DefaultWhite">#FFFFFF</Color>
-                    <Color x:Key="DefaultBlack">#010101</Color>
-                    <Color x:Key="BackgroundBlue">#262E58</Color>
-                    <Color x:Key="ButtonBackground">#262E58</Color>
-                    <Color x:Key="ButtonBackgroundHighlighted">#2D3A6B</Color>
-                    <Color x:Key="ButtonBackgroundSelected">#265849</Color>
+                    <Color x:Key="DefaultWhiteColor">#FFFFFF</Color>
+                    <Color x:Key="DefaultBlackColor">#010101</Color>
+                    <Color x:Key="BackgroundBlueColor">#262E58</Color>
+                    <Color x:Key="BackgroundDarkBlueColor">#1C274C</Color>
+                    <Color x:Key="ButtonBackgroundColor">#262E58</Color>
+                    <Color x:Key="TransparentButtonBackgroundColor">#00262E58</Color>
+                    <Color x:Key="ButtonBackgroundHighlightedColor">#2D3A6B</Color>
+                    <Color x:Key="ButtonBackgroundSelectedColor">#265849</Color>
                     
                     <!-- solid color brushes -->
-                    <SolidColorBrush x:Key="DefaultWhiteBrush" Color="{StaticResource DefaultWhite}" />
-                    <SolidColorBrush x:Key="DefaultBlackBrush" Color="{StaticResource DefaultBlack}" />
-                    <SolidColorBrush x:Key="BackgroundBlueBrush" Color="{StaticResource BackgroundBlue}" />
-                    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackground}" />
-                    <SolidColorBrush x:Key="ButtonBackgroundHighlightedBrush" Color="{StaticResource ButtonBackgroundHighlighted}" />
-                    <SolidColorBrush x:Key="ButtonBackgroundSelectedBrush" Color="{StaticResource ButtonBackgroundSelected}" />
+                    <SolidColorBrush x:Key="DefaultWhiteBrush" Color="{StaticResource DefaultWhiteColor}" />
+                    <SolidColorBrush x:Key="DefaultBlackBrush" Color="{StaticResource DefaultBlackColor}" />
+                    <SolidColorBrush x:Key="BackgroundBlueBrush" Color="{StaticResource BackgroundBlueColor}" />
+                    <SolidColorBrush x:Key="BackgroundDarkBlueBrush" Color="{StaticResource BackgroundDarkBlueColor}" />
+                    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}" />
+                    <SolidColorBrush x:Key="ButtonBackgroundHighlightedBrush" Color="{StaticResource ButtonBackgroundHighlightedColor}" />
+                    <SolidColorBrush x:Key="ButtonBackgroundSelectedBrush" Color="{StaticResource ButtonBackgroundSelectedColor}" />
                     
                     <!-- gradient color brushes -->
                     <LinearGradientBrush x:Key="BackgroundHorizontalGradientBrush" StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Color="{StaticResource DefaultBlack}" Offset="0" />
-                        <GradientStop Color="{StaticResource BackgroundBlue}" Offset="0.5" />
-                        <GradientStop Color="{StaticResource DefaultBlack}" Offset="1" />
+                        <GradientStop Color="{StaticResource DefaultBlackColor}" Offset="0" />
+                        <GradientStop Color="{StaticResource BackgroundBlueColor}" Offset="0.5" />
+                        <GradientStop Color="{StaticResource DefaultBlackColor}" Offset="1" />
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="GameBannerBackgroundHorizontalGradientBrush" StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource ButtonBackgroundColor}" Offset="0.5" />
+                        <GradientStop Color="{StaticResource TransparentButtonBackgroundColor}" Offset="1" />
                     </LinearGradientBrush>
                 </ResourceDictionary>
                 <ResourceDictionary x:Name="TextStyles">
-                    <Style x:Key="CopytextLightMedium"
+                    <Style x:Key="Header1"
+                           TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Impact" />
+                        <Setter Property="LineHeight" Value="80" />
+                        <Setter Property="FontSize" Value="65" />
+                        <Setter Property="Foreground" Value="{StaticResource DefaultWhiteBrush}" />
+                    </Style>
+                    <Style x:Key="Copytext"
                            TargetType="TextBlock">
                         <Setter Property="FontFamily" Value="Noto Sans" />
+                        <Setter Property="LineHeight" Value="30" />
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="Foreground" Value="{StaticResource DefaultWhiteBrush}" />
+                    </Style>
+                    <Style x:Key="CopytextLightMedium"
+                           TargetType="TextBlock"
+                           BasedOn="{StaticResource Copytext}">
                         <Setter Property="LineHeight" Value="40" />
                         <Setter Property="FontSize" Value="30" />
-                        <Setter Property="Foreground" Value="{StaticResource DefaultWhiteBrush}" />
                     </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

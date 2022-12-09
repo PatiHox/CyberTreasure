@@ -16,7 +16,6 @@ public class GenreButtonViewModel : PropertyChangedBase
     }
     public ICommand ButtonClickCommand { get; }
     public object Parent { get; }
-    public bool IsSelected { get; set; }
 
     public GenreButtonViewModel(GenreModel genreModel, ICommand buttonClickCommand, object parent)
     {

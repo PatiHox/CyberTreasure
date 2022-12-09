@@ -10,6 +10,7 @@
       WindowStartupLocation="CenterScreen"
       WindowState="Maximized"
       MinWidth="800" MinHeight="600"
-      Title="{Binding AppTitle, Mode=OneWay}">
+      Title="{Binding AppTitle, Mode=OneWay}"
+      Icon="../Assets/logo.png">
     <ContentControl x:Name="ActiveItem" />
 </Window>

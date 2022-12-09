@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Microsoft.Xaml.Behaviors.Core;
@@ -38,7 +39,10 @@ public class ShopViewModel : Screen
         }
     }
 
-    public List<GameModel> SelectedGenreGames => GenreButtons[SelectedIndex].GenreModel.Games;
+    public List<GameBannerViewModel> SelectedGenreGames => GenreButtons[SelectedIndex].GenreModel.Games.Select(game => new GameBannerViewModel(game)).ToList();
+    public List<GameBannerViewModel> RecommendedGames { get; init; } = new();
+    
+    public Visibility RecommendedSectionVisibility => RecommendedGames.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
 
     #endregion
 

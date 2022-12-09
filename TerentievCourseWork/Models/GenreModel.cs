@@ -6,6 +6,8 @@ namespace TerentievCourseWork.Models;
 
 public class GenreModel : IEquatable<GenreModel>
 {
+    #region Properties
+    
     [JsonProperty("id")]
     public long Id { get; set; }
     [JsonProperty("name")]
@@ -14,6 +16,10 @@ public class GenreModel : IEquatable<GenreModel>
     public string Description { get; set; } = String.Empty;
     [JsonProperty("games")]
     public List<GameModel> Games { get; set; } = new();
+
+    #endregion
+    
+    #region IEquatable<GenreModel> Members
 
     public bool Equals(GenreModel? other)
     {
@@ -34,4 +40,6 @@ public class GenreModel : IEquatable<GenreModel>
     {
         return HashCode.Combine(Id, Name, Description, Games);
     }
+
+    #endregion
 }

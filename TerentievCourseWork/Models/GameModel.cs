@@ -5,6 +5,8 @@ namespace TerentievCourseWork.Models;
 
 public class GameModel : IEquatable<GameModel>
 {
+    #region Properties
+
     [JsonProperty("id")]
     public long Id { get; set; }
 
@@ -32,6 +34,9 @@ public class GameModel : IEquatable<GameModel>
     [JsonProperty("rating")]
     public float Rating { get; set; } = 0;
 
+    #endregion
+    
+    #region IEquatable<GameModel> Members
 
     public bool Equals(GameModel? other)
     {
@@ -64,4 +69,6 @@ public class GameModel : IEquatable<GameModel>
         hashCode.Add(Rating);
         return hashCode.ToHashCode();
     }
+
+    #endregion
 }

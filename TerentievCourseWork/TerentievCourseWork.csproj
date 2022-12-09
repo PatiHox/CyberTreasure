@@ -14,4 +14,14 @@
       <PackageReference Include="NLog" Version="5.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Screenshot_1.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Assets\logo.png" />
+      <None Remove="Assets\Banners\default_banner.jpg" />
+      <Resource Include="Assets\Banners\default_banner.jpg" />
+    </ItemGroup>
+
 </Project>
